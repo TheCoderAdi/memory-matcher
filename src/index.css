@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 70% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 70% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 70% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 266 100% 70%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 50% 20%;
+    --muted-foreground: 215 20% 75%;
+
+    --accent: 326 100% 72%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 50% 20%;
+    --input: 215 50% 20%;
+    --ring: 196 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-neural-dark text-foreground bg-circuit-pattern font-mono;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono tracking-wider;
+  }
+}
+
+@layer components {
+  .neural-card {
+    @apply relative bg-gradient-to-b from-neural-dark to-black border border-neural-blue/30 rounded-md overflow-hidden backdrop-blur-sm;
+  }
+
+  .neural-card::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-neural-blue/10 to-neural-purple/10 opacity-50 pointer-events-none;
+  }
+
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg;
+  }
+
+  .neon-text {
+    @apply font-semibold;
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  .memory-tile {
+    @apply rounded-md border-2 transition-all duration-300 flex items-center justify-center cursor-pointer overflow-hidden;
+  }
+
+  .memory-tile.face-down {
+    @apply border-neural-blue/50 bg-gradient-to-br from-neural-dark to-neural-dark/80;
+    box-shadow: inset 0 0 10px rgba(0, 168, 255, 0.2);
+  }
+
+  .memory-tile.face-up {
+    @apply border-neural-blue bg-gradient-to-br from-neural-blue/20 to-neural-purple/20;
+    box-shadow: 0 0 15px rgba(0, 168, 255, 0.5), inset 0 0 20px rgba(0, 168, 255, 0.3);
+  }
+
+  .memory-tile.matched {
+    @apply border-neural-green bg-gradient-to-br from-neural-green/20 to-neural-blue/20;
+    box-shadow: 0 0 15px rgba(1, 205, 172, 0.5), inset 0 0 20px rgba(1, 205, 172, 0.3);
+  }
+
+  .circuit-line {
+    @apply h-0.5 bg-gradient-to-r from-neural-blue/0 via-neural-blue/80 to-neural-blue/0;
+    box-shadow: 0 0 5px rgba(0, 168, 255, 0.5);
+  }
+
+  .circuit-node {
+    @apply h-3 w-3 rounded-full bg-neural-blue;
+    box-shadow: 0 0 10px rgba(0, 168, 255, 0.8);
+  }
+
+  .neuro-grid {
+    @apply grid gap-2 rounded-lg p-1 bg-gradient-to-br from-neural-dark/90 to-black/90 border border-neural-blue/20;
+  }
+
+  .mind-integrity-bar {
+    @apply h-4 w-full rounded-full bg-neural-dark border border-neural-blue/30 overflow-hidden relative;
+  }
+
+  .integrity-fill {
+    @apply h-full bg-gradient-to-r from-neural-purple via-neural-blue to-neural-green transition-all duration-500;
+    box-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+  }
+
+  .combo-pulse {
+    @apply transition-all duration-300;
+    text-shadow: 0 0 5px currentColor, 0 0 15px currentColor;
+  }
+}
