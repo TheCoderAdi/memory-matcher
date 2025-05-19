@@ -13,8 +13,7 @@ class AudioFX {
   private initAudioContext() {
     if (!this.audioContext && this.enabled) {
       try {
-        this.audioContext = new (window.AudioContext ||
-          window.webkitAudioContext)();
+        this.audioContext = new window.AudioContext();
       } catch (e) {
         console.warn("Failed to initialize AudioContext:", e);
       }
