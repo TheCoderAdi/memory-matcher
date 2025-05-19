@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { toast } from "sonner";
 import MemoryGrid from "./MemoryGrid";
 import { CircuitBoard, BrainCircuit } from "lucide-react";
+import { audioFX } from "../utils/audioEffects";
 
 const GameInterface: React.FC = () => {
   const [level, setLevel] = useState(1);
@@ -49,6 +50,7 @@ const GameInterface: React.FC = () => {
   useEffect(() => {
     if (mindIntegrity <= 0 && gameStatus !== "lost") {
       setGameStatus("lost");
+      audioFX.loose();
       toast.error("Neural Synchronization Failed", {
         description: "Mind integrity collapsed. Simulation terminated.",
       });
@@ -72,6 +74,15 @@ const GameInterface: React.FC = () => {
     setMindIntegrity(100);
     setGameStatus("ready");
     setComboValue(1);
+  };
+
+  const handleClick = () => {
+    if (gameStatus === "lost") {
+      startNewGame();
+    } else {
+      setGameStatus("playing");
+    }
+    audioFX.startNewGame();
   };
 
   return (
@@ -110,11 +121,7 @@ const GameInterface: React.FC = () => {
         {(gameStatus === "ready" || gameStatus === "lost") && (
           <div className="flex justify-center mt-4">
             <Button
-              onClick={() =>
-                gameStatus === "lost"
-                  ? startNewGame()
-                  : setGameStatus("playing")
-              }
+              onClick={() => handleClick()}
               className="bg-neural-blue hover:bg-neural-purple text-white border border-neural-blue/50 shadow-lg"
             >
               {gameStatus === "lost"

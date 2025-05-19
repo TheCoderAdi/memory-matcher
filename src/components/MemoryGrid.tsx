@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MemoryTile from "./MemoryTile";
 import { toast } from "sonner";
+import { audioFX } from "../utils/audioEffects.ts";
 
 interface MemoryGridProps {
   gridSize: number;
@@ -126,6 +127,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({
       return;
     }
 
+    audioFX.click();
     const updatedTiles = tiles.map((tile) =>
       tile.id === id ? { ...tile, isFlipped: true } : tile
     );
@@ -164,6 +166,7 @@ const MemoryGrid: React.FC<MemoryGridProps> = ({
           const points = baseScore + comboMultiplier * levelFactor;
 
           onScoreUpdate(points);
+          audioFX.success();
 
           if (newComboCount > 1) {
             toast(`${newComboCount}x Combo!`, {
